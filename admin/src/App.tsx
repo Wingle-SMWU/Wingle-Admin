@@ -1,14 +1,18 @@
+import React, { memo } from 'react';
+import { ThemeProvider } from '@emotion/react';
 import Router from '@routes/Router';
 import { queryClient } from '@utils/queryClient';
-import React, { memo } from 'react';
 import { QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import AppTheme from './theme';
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
-      <Router />
+      <ThemeProvider theme={AppTheme}>
+        <Router />
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

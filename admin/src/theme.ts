@@ -2,10 +2,8 @@ import { Theme } from '@emotion/react';
 
 export const image = {
   logoBasic: require('@assets/images/logo.svg'),
-  logoLogin: require('@assets/images/login_login.svg'),
+  logoLogin: require('@assets/images/logo_login.svg'),
   modalClose: require('@assets/images/modal_close.svg'),
-  pageLeft: require('@assets/images/page_left.svg'),
-  pageRight: require('@assets/images/page_right.svg'),
 };
 
 export const AppTheme: Theme = {
