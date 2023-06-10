@@ -16,7 +16,7 @@ const style = css`
     overflow-x: hidden;
     box-sizing: border-box;
     font-size: 1.4rem;
-    font-weight: 700;
+    font-weight: 500;
     padding: 0;
     margin: 0;
 
@@ -35,6 +35,10 @@ const style = css`
 
     ${mq('desktop')} {
       font-size: 1.6rem;
+      // padding-left: 20%;
+      margin-left: 20%;
+      padding-left: 0;
+      position: relative;
     }
   }
 
