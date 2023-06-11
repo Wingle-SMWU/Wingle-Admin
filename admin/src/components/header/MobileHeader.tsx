@@ -1,12 +1,21 @@
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import React from 'react';
+import { mq } from '@utils/mediaquery';
 
 const Container = styled.div(() => ({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
+  gap: '0.6rem',
+
+  [mq('desktop')]: {
+    marginBottom: '2rem',
+    '& img': {
+      marginBottom: '0.5rem',
+    },
+  },
 }));
 
 function MobileHeader() {

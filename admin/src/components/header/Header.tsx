@@ -1,5 +1,4 @@
-import { useTheme } from '@emotion/react';
-import { IsDefault, IsDesktop } from '@utils/mediaquery';
+import { IsDefault } from '@utils/mediaquery';
 import React from 'react';
 import WebHeader from './WebHeader';
 import MobileHeader from './MobileHeader';
@@ -7,13 +6,11 @@ import MobileHeader from './MobileHeader';
 function Header() {
   return (
     <>
-      <IsDesktop>
-        <WebHeader />
-      </IsDesktop>
+      <WebHeader />
 
-      <IsDefault>
-        <MobileHeader />
-      </IsDefault>
+      {/* <IsDefault>
+      <MobileHeader />
+      </IsDefault> */}
     </>
   );
 }

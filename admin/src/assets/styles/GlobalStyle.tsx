@@ -12,13 +12,13 @@ const style = css`
   }
 
   body {
-    width: 100vw;
+    width: 90vw;
     overflow-x: hidden;
     box-sizing: border-box;
     font-size: 1.4rem;
-    font-weight: 500;
+    font-weight: 400;
     padding: 0;
-    margin: 0;
+    margin: 0 auto;
 
     &::-webkit-scrollbar {
       width: 1rem;
@@ -35,10 +35,9 @@ const style = css`
 
     ${mq('desktop')} {
       font-size: 1.6rem;
-      // padding-left: 20%;
-      margin-left: 20%;
-      padding-left: 0;
-      position: relative;
+      // margin-left: 20%;
+      // padding-left: 0;
+      // position: relative;
     }
   }
 
@@ -94,14 +93,14 @@ const style = css`
   }
 
   textarea,
-  input,
-  select {
+  input {
+    width: 100%;
     outline: none;
     font-weight: 700;
-    color: #fcfcfe;
 
     &::placeholder {
       transition: all 0.3s;
+      color: #959599;
     }
 
     &:focus {
