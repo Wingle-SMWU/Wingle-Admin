@@ -12,7 +12,8 @@ const style = css`
   }
 
   body {
-    width: 90vw;
+    width: 100vw;
+    height: 100vh;
     overflow-x: hidden;
     box-sizing: border-box;
     font-size: 1.4rem;
@@ -35,9 +36,6 @@ const style = css`
 
     ${mq('desktop')} {
       font-size: 1.6rem;
-      // margin-left: 20%;
-      // padding-left: 0;
-      // position: relative;
     }
   }
 

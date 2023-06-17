@@ -41,6 +41,11 @@ export const AppTheme: Theme = {
     primary: '0px 4px 4px rgba(0, 0, 0, 0.1)',
     secondary: '0px 4px 8px rgba(0, 0, 0, 0.24);',
   },
+  spacing: {
+    pcPadding: '20%',
+    tabPadding: '10%',
+    mobPadding: '5%',
+  },
 };
 
 export type ITheme = typeof AppTheme;

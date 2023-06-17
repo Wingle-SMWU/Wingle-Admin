@@ -43,5 +43,10 @@ declare module '@emotion/react' {
       primary: string;
       secondary: string;
     };
+    spacing: {
+      pcPadding: string;
+      tabPadding: string;
+      mobPadding: string;
+    };
   }
 }
