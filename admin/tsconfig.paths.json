@@ -4,10 +4,12 @@
     "paths": {
       "@assets/*": ["./assets/*"],
       "@components/*": ["./components/*"],
+      "@hooks/*": ["./hooks/*"],
       "@global-states/*": ["./global-states/*"],
       "@pages/*": ["./pages/*"],
       "@routes/*": ["./routes/*"],
-      "@utils/*": ["./utils/*"]
+      "@utils/*": ["./utils/*"],
+      "@types/*": ["./types/*"]
     }
   }
 }
