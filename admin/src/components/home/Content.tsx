@@ -89,8 +89,10 @@ const Item = styled.ul<{ nation: string | null }>(({ theme, nation }) => ({
     borderRadius: '2rem',
     padding: '0.3rem 1.2rem',
     margin: 'auto 0',
+    width: '5.8rem',
+
     '> p': {
-      width: '100%',
+      width: '4rem',
       height: '1.7rem',
       fontWeight: theme.fontWeight.bold,
       fontSize: '1.2rem',

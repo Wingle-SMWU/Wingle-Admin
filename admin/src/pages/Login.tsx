@@ -1,5 +1,4 @@
 import React, { memo, useCallback } from 'react';
-import axios from 'axios';
 import { LOGIN_API_URL } from '@utils/apiUrl';
 import { useForm } from 'react-hook-form';
 import { LoginType } from 'types/accountTypes';
@@ -12,6 +11,7 @@ import { yupLogin } from '@utils/yupValidation';
 import { mq } from '@utils/mediaquery';
 import { MobileHeader } from '@components/header';
 import { useNavigate } from 'react-router-dom';
+import { useAxios } from '@global-states/useAxios';
 
 const FormStyle = styled.form(() => ({
   width: '90%',
@@ -40,12 +40,13 @@ const ButtonGroupStyle = styled.div(() => ({
 function Login() {
   const navigate = useNavigate();
 
+  const axiosInstance = useAxios();
+
   const {
     control,
     handleSubmit,
     setError,
     formState: { isValid, errors },
-    setValue,
   } = useForm<LoginType>({
     resolver: yupResolver(yupLogin),
     mode: 'onChange',
@@ -58,7 +59,7 @@ function Login() {
   const onSubmit = useCallback(
     async (formData: LoginType) => {
       try {
-        const { data, status } = await axios.post(LOGIN_API_URL, formData);
+        const { data, status } = await axiosInstance.post(LOGIN_API_URL, formData);
 
         if (status === 200 && data.data.admin) {
           sessionStorage.setItem('tokens', JSON.stringify(data.data));
@@ -74,7 +75,7 @@ function Login() {
         }
       }
     },
-    [navigate, setError],
+    [axiosInstance, navigate, setError],
   );
 
   return (

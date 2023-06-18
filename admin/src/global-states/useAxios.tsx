@@ -13,10 +13,8 @@ export function useAxios() {
   const parsedToken = token ? JSON.parse(token) : null;
 
   const axiosInstance = axios.create({
-    // headers: { Authorization: `Bearer ${parsedToken?.accessToken}` },
-    headers: {
-      Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsaXphQGFhLmNvbSIsIkFVVEgiOiJST0xFX0FETUlOIiwiZXhwIjoyMDA1NzUwMjQ2fQ.Ya6V_66n0CwgOXyl8-AwE90lCIf5CSV3-mxaJart_o4g6JOYcfp1yAT-K9qhl9zBI7MfoPhrrxsCzOoejeF6kw`,
-    },
+    baseURL: process.env.REACT_APP_SERVER_URL,
+    headers: { Authorization: `Bearer ${parsedToken?.accessToken}` },
   });
 
   const clearUser = () => {
@@ -40,7 +38,7 @@ export function useAxios() {
         clearUser();
       } else {
         try {
-          const res = await axios.post(TOKEN_API_URL, {
+          const res = await axiosInstance.post(TOKEN_API_URL, {
             refreshToken: parsedToken.refreshToken,
           });
 
@@ -51,10 +49,7 @@ export function useAxios() {
               refreshToken: parsedToken.refreshToken,
             };
             sessionStorage.setItem('tokens', JSON.stringify(newTokens));
-            // req.headers['Authorization'] = `Bearer ${newTokens.accessToken}`;
-            req.headers[
-              'Authorization'
-            ] = `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsaXphQGFhLmNvbSIsIkFVVEgiOiJST0xFX0FETUlOIiwiZXhwIjoyMDA1NzUwMjQ2fQ.Ya6V_66n0CwgOXyl8-AwE90lCIf5CSV3-mxaJart_o4g6JOYcfp1yAT-K9qhl9zBI7MfoPhrrxsCzOoejeF6kw`;
+            req.headers['Authorization'] = `Bearer ${newTokens.accessToken}`;
           }
         } catch (error: any) {
           console.log(error.response.status);

@@ -7,12 +7,13 @@ import { USER_LIST_API } from '@utils/apiUrl';
 import { ADMIN_GET_LIST, ADMIN_TAB_LIST } from '@utils/constants';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import Login from './Login';
+import { useNavigate } from 'react-router-dom';
 import PageBtn from '../components/home/PageBtn';
 
 const Wrapper = styled.div(({ theme }) => ({
   position: 'relative',
   width: '100%',
+  height: '150rem',
   backgroundColor: theme.color.white,
 }));
 
@@ -25,6 +26,7 @@ function Home() {
 
   const axiosInstance = useAxios();
   const { isLoggedIn } = useUser();
+  const navigate = useNavigate();
 
   const { data } = useQuery([path, { path, page }], () =>
     axiosInstance?.get(`${USER_LIST_API}/${path}/${page - 1}`),
@@ -37,7 +39,9 @@ function Home() {
 
   useEffect(() => setPage(1), [currIdx]);
 
-  if (!isLoggedIn) return <Login />;
+  useEffect(() => {
+    if (!isLoggedIn) navigate('/login');
+  }, [isLoggedIn, navigate]);
 
   return (
     <Wrapper>

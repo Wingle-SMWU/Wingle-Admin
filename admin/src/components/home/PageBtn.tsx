@@ -13,7 +13,7 @@ const Button = styled.ul<{ page: number }>(({ theme, page }) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  padding: `2rem 0 0 4rem`,
+  padding: `0.4rem 2rem`,
   width: '100%',
   '.pagination': {
     display: 'flex',
