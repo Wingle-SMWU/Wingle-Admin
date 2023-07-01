@@ -26,6 +26,7 @@ const Button = styled.ul<{ page: number }>(({ theme, page }) => ({
     height: '4rem',
     lineHeight: '  4rem',
     textAlign: 'center',
+    color: theme.color.gray500,
     '&:nth-of-type(1), &:last-child': {
       display: 'none',
     },
