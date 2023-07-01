@@ -22,7 +22,7 @@ const Overlay = styled.div(() => ({
   zIndex: 1,
   width: '100%',
   height: '100%',
-  background: 'rgba(0, 0, 0, 0.6)',
+  background: 'rgba(0, 0, 0, 0.8)',
 }));
 
 const ModalIn = styled.div(() => ({
@@ -32,9 +32,7 @@ const ModalIn = styled.div(() => ({
 const ModalContents = styled.div(({ theme }) => ({
   position: 'relative',
   zIndex: 10,
-  minWidth: '30vw',
-  maxWidth: '90vw',
-  maxHeight: '68vh',
+  maxWidth: '30vw',
   margin: '0 auto 3rem',
   padding: '3rem',
   background: theme.color.white,
@@ -43,8 +41,6 @@ const ModalContents = styled.div(({ theme }) => ({
   overflowY: 'auto',
 
   [mq('desktop')]: {
-    maxWidth: '60vw',
-    maxHeight: '100vh',
     padding: '3rem 6rem',
   },
 }));
@@ -83,12 +79,12 @@ const ModalButton = styled.button<ButtonActive>(({ theme, active = false }) => (
   width: '100%',
   minWidth: '8rem',
   padding: '1.2rem 0',
-  background: active ? theme.color.orange500 : theme.color.white,
-  color: active ? theme.color.white : theme.color.orange500,
+  background: active ? theme.color.orange500 : theme.color.gray200,
+  color: active ? theme.color.white : theme.color.gray600,
   textAlign: 'center',
   borderRadius: '0.5rem',
   fontSize: '1.4rem',
-  border: `1px solid ${theme.color.orange500}`,
+  // border: `1px solid ${theme.color.orange500}`,
 }));
 
 export const ModalInfo = styled.p(() => ({

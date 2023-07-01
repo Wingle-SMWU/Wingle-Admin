@@ -11,12 +11,13 @@ type RejectFactor = {
   userId: string | undefined;
   inputs: { reject: string; memo: string };
   setInputs: React.Dispatch<React.SetStateAction<{ reject: string; memo: string }>>;
+  isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   data: AdminUserResp;
   setButtonStatus?: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const Wrapper = styled.div(({ theme }) => ({
+const Wrapper = styled.div<{ modal: boolean }>(({ theme, modal }) => ({
   display: 'flex',
   flexDirection: 'column',
   padding: '2rem 1.6rem',
@@ -34,13 +35,14 @@ const Wrapper = styled.div(({ theme }) => ({
       width: '78.8rem',
     },
     textarea: {
-      resize: 'none',
       width: '100%',
       height: '12rem',
+      padding: '1.6rem',
       border: `1px solid ${theme.color.gray200}`,
       borderRadius: '0.8rem',
       color: theme.color.gray900,
-      padding: '0.6rem 1.6rem',
+      opacity: modal ? 0.2 : 1,
+      resize: 'none',
     },
   },
 }));
@@ -54,6 +56,7 @@ const ButtonGroup = styled.div(({ theme }) => ({
 function Reject({
   children,
   userId,
+  isOpen,
   setIsOpen,
   inputs,
   setInputs,
@@ -73,7 +76,7 @@ function Reject({
   const inputValue = children === '메모' ? data.memo : data.reason;
 
   return (
-    <Wrapper>
+    <Wrapper modal={isOpen}>
       <div>
         <p>{children}</p>
         <textarea

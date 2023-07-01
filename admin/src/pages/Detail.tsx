@@ -59,6 +59,7 @@ function Detail() {
           <Contents
             userId={userId}
             data={data.data.data}
+            isOpen={isOpen}
             setIsOpen={setIsOpen}
             inputs={inputs}
             setInputs={setInputs}
