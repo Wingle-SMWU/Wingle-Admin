@@ -23,6 +23,7 @@ const Wrapper = styled.div(({ theme }) => ({
   '> div': {
     display: 'flex',
     '> p': {
+      display: 'flex',
       color: theme.color.gray900,
     },
     '> p:nth-of-type(1)': {
@@ -34,6 +35,7 @@ const Wrapper = styled.div(({ theme }) => ({
     },
     textarea: {
       resize: 'none',
+      width: '100%',
       height: '12rem',
       border: `1px solid ${theme.color.gray200}`,
       borderRadius: '0.8rem',
@@ -74,13 +76,11 @@ function Reject({
     <Wrapper>
       <div>
         <p>{children}</p>
-        <p>
-          <textarea
-            name={`${children}`}
-            defaultValue={inputValue || ''}
-            onChange={handleChangeReason}
-          />
-        </p>
+        <textarea
+          name={`${children}`}
+          defaultValue={inputValue || ''}
+          onChange={handleChangeReason}
+        />
       </div>
       <ButtonGroup>
         {children === '거절사유' && (
