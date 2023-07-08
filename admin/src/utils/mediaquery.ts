@@ -11,7 +11,7 @@ export const IsDesktop = ({ children }: MediaQuery) => {
 };
 
 export const IsTablet = ({ children }: MediaQuery) => {
-  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 991 });
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
   return isTablet ? children : null;
 };
 
