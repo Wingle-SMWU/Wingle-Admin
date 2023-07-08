@@ -15,7 +15,7 @@ const style = css`
     height: 100vh;
     overflow-x: hidden;
     box-sizing: border-box;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 400;
     padding: 0;
     margin: 0 auto;
@@ -31,6 +31,10 @@ const style = css`
 
     &::-webkit-scrollbar-track {
       background-color: transparent;
+    }
+
+    ${mq('tablet')} {
+      font-size: 1.4rem;
     }
 
     ${mq('desktop')} {

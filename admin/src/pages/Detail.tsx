@@ -6,6 +6,7 @@ import { SecondaryButton } from '@components/common/buttons';
 import { useLocation } from 'react-router-dom';
 import { ADMIN_TAB_LIST } from '@utils/constants';
 import { MembershipModal } from '@components/common/modal';
+import { mq } from '@utils/mediaquery';
 import Contents from '../components/detail/Contents';
 
 const Wrapper = styled.div<{ modal: boolean }>(({ theme, modal }) => ({
@@ -16,21 +17,34 @@ const Wrapper = styled.div<{ modal: boolean }>(({ theme, modal }) => ({
 }));
 
 const Card = styled.div<{ card: string }>(({ card, theme }) => ({
-  width: '70rem',
   height: '60rem',
-  margin: `0 ${theme.spacing.pcPadding}`,
+  margin: `0 ${theme.spacing.mobPadding}`,
 
   backgroundImage: card ? `url(${card})` : '',
   backgroundSize: 'contain',
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'center',
+
+  [mq('tablet')]: {
+    margin: `0 ${theme.spacing.tabPadding}`,
+  },
+  [mq('desktop')]: {
+    margin: `0 ${theme.spacing.pcPadding}`,
+  },
 }));
 
 const ButtonGroup = styled.div(({ theme }) => ({
   display: 'flex',
   justifyContent: 'flex-end',
-  padding: `2rem ${theme.spacing.pcPadding}`,
+  padding: `2rem ${theme.spacing.mobPadding}`,
   borderTop: `1px solid ${theme.color.gray200}`,
+
+  [mq('tablet')]: {
+    padding: `2rem ${theme.spacing.tabPadding}`,
+  },
+  [mq('desktop')]: {
+    padding: `2rem ${theme.spacing.pcPadding}`,
+  },
 }));
 
 function Detail() {

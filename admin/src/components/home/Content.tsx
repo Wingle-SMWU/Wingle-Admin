@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { ADMIN_CONTENT_MENU, USER_NATIONALITY } from '@utils/constants';
+import { mq } from '@utils/mediaquery';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AdminUserResp } from 'types/userTypes';
@@ -12,10 +13,18 @@ type AdminUsersResp = {
 const Wrapper = styled.div(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
-  margin: `0 ${theme.spacing.pcPadding}`,
+  margin: `0 ${theme.spacing.mobPadding}`,
 
   '& a': {
     textDecoration: 'none',
+  },
+
+  [mq('tablet')]: {
+    margin: `0 ${theme.spacing.tabPadding}`,
+  },
+
+  [mq('desktop')]: {
+    margin: `0 ${theme.spacing.pcPadding}`,
   },
 }));
 
@@ -37,13 +46,25 @@ const Menu = styled.ul(({ theme }) => ({
   },
 
   '> li:nth-of-type(1)': {
-    width: '11.2rem',
+    width: '9rem',
+    [mq('tablet')]: {
+      width: '10rem',
+    },
+    [mq('desktop')]: {
+      width: '11.2rem',
+    },
     '> p': {
       width: '8rem',
     },
   },
   '> li:nth-of-type(2)': {
-    width: '21.4rem',
+    width: '17rem',
+    [mq('tablet')]: {
+      width: '19rem',
+    },
+    [mq('desktop')]: {
+      width: '21.4rem',
+    },
     '> p': {
       width: '18.2rem',
     },
@@ -76,12 +97,24 @@ const Item = styled.ul<{ nation: string | null }>(({ theme, nation }) => ({
   },
   '> li:nth-of-type(1)': {
     '> p': {
-      width: '8rem',
+      width: '6rem',
+      [mq('tablet')]: {
+        width: '7rem',
+      },
+      [mq('desktop')]: {
+        width: '8rem',
+      },
     },
   },
   '> li:nth-of-type(2)': {
     '> p': {
-      width: '18.2rem',
+      width: '14rem',
+      [mq('tablet')]: {
+        width: '16rem',
+      },
+      [mq('desktop')]: {
+        width: '18.2rem',
+      },
     },
   },
   '> li:nth-of-type(3)': {

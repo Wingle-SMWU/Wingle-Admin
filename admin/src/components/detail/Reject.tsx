@@ -2,6 +2,7 @@ import { TertiaryButton } from '@components/common/buttons';
 import styled from '@emotion/styled';
 import usePostTemp from '@hooks/usePostTemp';
 import { ADMIN_TAB_LIST } from '@utils/constants';
+import { mq } from '@utils/mediaquery';
 import React, { ReactNode } from 'react';
 import { useLocation } from 'react-router-dom';
 import { AdminUserResp } from 'types/userTypes';
@@ -20,7 +21,9 @@ type RejectFactor = {
 const Wrapper = styled.div<{ modal: boolean }>(({ theme, modal }) => ({
   display: 'flex',
   flexDirection: 'column',
-  padding: '2rem 1.6rem',
+  [mq('tablet')]: {
+    padding: '2rem 1.6rem',
+  },
   '> div': {
     display: 'flex',
     '> p': {

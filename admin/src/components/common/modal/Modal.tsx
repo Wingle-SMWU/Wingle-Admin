@@ -32,7 +32,7 @@ const ModalIn = styled.div(() => ({
 const ModalContents = styled.div(({ theme }) => ({
   position: 'relative',
   zIndex: 10,
-  maxWidth: '30vw',
+  minWidth: '30vw',
   margin: '0 auto 3rem',
   padding: '3rem',
   background: theme.color.white,
@@ -84,7 +84,6 @@ const ModalButton = styled.button<ButtonActive>(({ theme, active = false }) => (
   textAlign: 'center',
   borderRadius: '0.5rem',
   fontSize: '1.4rem',
-  // border: `1px solid ${theme.color.orange500}`,
 }));
 
 export const ModalInfo = styled.p(() => ({

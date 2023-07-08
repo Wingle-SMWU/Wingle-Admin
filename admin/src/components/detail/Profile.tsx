@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { USER_NATIONALITY } from '@utils/constants';
+import { mq } from '@utils/mediaquery';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { AdminUserResp } from 'types/userTypes';
@@ -15,17 +16,30 @@ const Wrapper = styled.div(({ theme }) => ({
     width: '100%',
     height: '6rem',
     borderBottom: `1px solid ${theme.color.gray200}`,
-    padding: '2rem 1.6rem',
+    [mq('tablet')]: {
+      padding: '2rem 1.6rem',
+    },
     '> p': {
-      // padding: '2rem 1.6rem',
       color: theme.color.gray900,
     },
     '> p:nth-of-type(1)': {
-      width: '14.4rem',
+      width: '10rem',
       fontWeight: theme.fontWeight.bold,
+      [mq('tablet')]: {
+        width: '12rem',
+      },
+      [mq('desktop')]: {
+        width: '14.4rem',
+      },
     },
     '> p:nth-of-type(2)': {
-      width: '78.8rem',
+      width: '20rem',
+      [mq('tablet')]: {
+        width: '50rem',
+      },
+      [mq('desktop')]: {
+        width: '78.8rem',
+      },
     },
   },
 }));
