@@ -4,6 +4,7 @@ import { mq } from '@utils/mediaquery';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { AdminUserResp } from 'types/userTypes';
+import ProfileInfo from './ProfileInfo';
 
 type ProfileFactor = {
   data: AdminUserResp;
@@ -49,22 +50,19 @@ function Profile({ data }: ProfileFactor) {
 
   return (
     <Wrapper>
-      <div>
-        <p>No</p>
-        <p>{location.state.no}</p>
-      </div>
-      <div>
-        <p>이름</p>
-        <p>{data.name}</p>
-      </div>
-      <div>
-        <p>구분</p>
-        <p>{data.nation === 'KR' ? USER_NATIONALITY[0] : USER_NATIONALITY[1]}</p>
-      </div>
-      <div>
-        <p>가입신청일</p>
-        <p>{data.createdTime.split('T')[0]}</p>
-      </div>
+      <ProfileInfo title="No" info={location.state.no} />
+      <ProfileInfo title="가입신청일" info={data.createdTime.split('T')[0]} />
+      <ProfileInfo
+        title="구분"
+        info={data.nation === 'KR' ? USER_NATIONALITY[0] : USER_NATIONALITY[1]}
+      />
+      <ProfileInfo title="이름" info={data.name} />
+      <ProfileInfo title="국적" info="" />
+      <ProfileInfo title="성별" info="" />
+      <ProfileInfo title="학교" info="" />
+      <ProfileInfo title="학번" info="" />
+      <ProfileInfo title="닉네임" info="" />
+      <ProfileInfo title="이메일" info="" />
     </Wrapper>
   );
 }
