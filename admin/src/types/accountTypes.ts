@@ -1,6 +1,7 @@
 export interface LoginType {
   email: string;
   password: string;
+  autoLogin?: boolean;
 }
 
 export interface ParsedTokenType {

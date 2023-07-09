@@ -7,7 +7,7 @@ import { TOKEN_API_URL } from '@utils/apiUrl';
 export function useAxios() {
   const navigate = useNavigate();
 
-  const token = sessionStorage.getItem('tokens');
+  const token = sessionStorage.getItem('tokens') || localStorage.getItem('tokens');
   let newToken = '';
 
   const parsedToken = token ? JSON.parse(token) : null;
@@ -19,6 +19,7 @@ export function useAxios() {
 
   const clearUser = () => {
     sessionStorage.removeItem('tokens');
+    localStorage.removeItem('tokens');
     alert('다시 로그인해주세요.');
     navigate('/');
   };
@@ -48,7 +49,11 @@ export function useAxios() {
               accessToken: newToken,
               refreshToken: parsedToken.refreshToken,
             };
-            sessionStorage.setItem('tokens', JSON.stringify(newTokens));
+            if (localStorage.getItem('autoLogin')) {
+              localStorage.setItem('tokens', JSON.stringify(newTokens));
+            } else {
+              sessionStorage.setItem('tokens', JSON.stringify(newTokens));
+            }
             req.headers['Authorization'] = `Bearer ${newTokens.accessToken}`;
           }
         } catch (error: any) {
