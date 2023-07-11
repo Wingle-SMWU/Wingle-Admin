@@ -5,11 +5,16 @@ import dayjs from 'dayjs';
 export function useUser() {
   const navigate = useNavigate();
 
-  const tokens = sessionStorage.getItem('tokens');
+  const isAutoLogin = localStorage.getItem('autoLogin');
+
+  const tokens =
+    isAutoLogin === 'true' ? localStorage.getItem('tokens') : sessionStorage.getItem('tokens');
 
   const parsedToken = tokens ? JSON.parse(tokens) : null;
 
   const clearUser = () => {
+    localStorage.removeItem('autoLogin');
+    localStorage.removeItem('tokens');
     sessionStorage.removeItem('tokens');
     navigate('/');
   };
@@ -29,7 +34,9 @@ export function useUser() {
     return false;
   }, [parsedToken]);
 
-  const isLoggedIn = !isExpired && sessionStorage.getItem('tokens') !== null;
+  const isLoggedIn =
+    !isExpired &&
+    (localStorage.getItem('tokens') !== null || sessionStorage.getItem('tokens') !== null);
 
   return { clearUser, isLoggedIn };
 }

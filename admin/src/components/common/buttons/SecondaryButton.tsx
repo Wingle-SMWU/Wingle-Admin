@@ -1,11 +1,12 @@
 import styled from '@emotion/styled';
+import { mq } from '@utils/mediaquery';
 import React from 'react';
 
 const StyledButton = styled.button<{ active: boolean }>(({ theme, active }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  padding: '1.5rem 7.5rem',
+  padding: '1.5rem 6rem',
   color: active ? theme.color.white : theme.color.gray500,
   background: active ? theme.color.orange500 : theme.color.gray200,
   fontSize: '1.6rem',
@@ -16,6 +17,10 @@ const StyledButton = styled.button<{ active: boolean }>(({ theme, active }) => (
 
   ':hover': {
     background: theme.color.orange400,
+  },
+
+  [mq('tablet')]: {
+    padding: '1.5rem 7.5rem',
   },
 }));
 

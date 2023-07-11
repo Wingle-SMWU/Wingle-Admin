@@ -4,6 +4,8 @@ export const image = {
   logoBasic: require('@assets/images/logo.svg'),
   logoLogin: require('@assets/images/logo_login.svg'),
   modalClose: require('@assets/images/modal_close.svg'),
+  checkFalse: require('@assets/images/check_false.svg'),
+  checkTrue: require('@assets/images/check_true.svg'),
 };
 
 export const AppTheme: Theme = {

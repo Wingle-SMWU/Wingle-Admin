@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import React from 'react';
 import { AdminUserResp } from 'types/userTypes';
+import { mq } from '@utils/mediaquery';
 import Profile from './Profile';
 import Reject from './Reject';
 
@@ -19,7 +20,14 @@ const ContentsWrapper = styled.form(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem',
-  padding: `2rem ${theme.spacing.pcPadding}`,
+  padding: `2rem ${theme.spacing.mobPadding}`,
+
+  [mq('tablet')]: {
+    padding: `2rem ${theme.spacing.tabPadding}`,
+  },
+  [mq('desktop')]: {
+    padding: `2rem ${theme.spacing.pcPadding}`,
+  },
 }));
 
 function Contents({

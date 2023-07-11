@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { ADMIN_CONTENT_MENU, USER_NATIONALITY } from '@utils/constants';
+import { mq } from '@utils/mediaquery';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AdminUserResp } from 'types/userTypes';
@@ -12,10 +13,18 @@ type AdminUsersResp = {
 const Wrapper = styled.div(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
-  margin: `0 ${theme.spacing.pcPadding}`,
+  margin: `0 ${theme.spacing.mobPadding}`,
 
   '& a': {
     textDecoration: 'none',
+  },
+
+  [mq('tablet')]: {
+    margin: `0 ${theme.spacing.tabPadding}`,
+  },
+
+  [mq('desktop')]: {
+    margin: `0 ${theme.spacing.pcPadding}`,
   },
 }));
 
@@ -36,20 +45,35 @@ const Menu = styled.ul(({ theme }) => ({
     color: theme.color.gray600,
   },
 
-  '> li:nth-of-type(1)': {
-    width: '11.2rem',
+  '> li:nth-of-type(1), li:nth-of-type(4)': {
+    width: '6rem',
+    [mq('tablet')]: {
+      width: '10rem',
+    },
+    [mq('desktop')]: {
+      width: '11.2rem',
+    },
     '> p': {
       width: '8rem',
     },
   },
   '> li:nth-of-type(2)': {
-    width: '21.4rem',
+    width: '12.2rem',
+    [mq('tablet')]: {
+      width: '19rem',
+    },
+    [mq('desktop')]: {
+      width: '21.4rem',
+    },
     '> p': {
       width: '18.2rem',
     },
   },
   '> li:nth-of-type(3)': {
-    width: '8.8rem',
+    width: '8rem',
+    [mq('tablet')]: {
+      width: '8.8rem',
+    },
     '> p': {
       width: '4.8rem',
     },
@@ -58,8 +82,8 @@ const Menu = styled.ul(({ theme }) => ({
 
 const Item = styled.ul<{ nation: string | null }>(({ theme, nation }) => ({
   display: 'flex',
-  borderBottom: `1px solid ${theme.color.gray200}`,
   width: '100%',
+  borderBottom: `1px solid ${theme.color.gray200}`,
   '&:hover': {
     cursor: 'pointer',
     '> li:nth-of-type(2)': {
@@ -73,23 +97,44 @@ const Item = styled.ul<{ nation: string | null }>(({ theme, nation }) => ({
     width: '1.8rem',
     height: '2.2rem',
     color: theme.color.gray900,
+    lineHeight: 1.6,
   },
   '> li:nth-of-type(1)': {
     '> p': {
-      width: '8rem',
+      width: '3rem',
+      [mq('tablet')]: {
+        width: '7rem',
+      },
+      [mq('desktop')]: {
+        width: '8rem',
+      },
     },
   },
-  '> li:nth-of-type(2)': {
+  '> li:nth-of-type(2), li:nth-of-type(4)': {
     '> p': {
-      width: '18.2rem',
+      width: '9rem',
+      [mq('tablet')]: {
+        width: '16rem',
+      },
+      [mq('desktop')]: {
+        width: '18.2rem',
+      },
     },
   },
   '> li:nth-of-type(3)': {
+    width: '5.8rem',
+    padding: '0.3rem 1.2rem',
+    margin: 'auto 2rem auto 0',
     border: `1px solid ${theme.color.gray200}`,
     borderRadius: '2rem',
-    padding: '0.3rem 1.2rem',
-    margin: 'auto 0',
-    width: '5.8rem',
+
+    [mq('tablet')]: {
+      marginRight: '2.8rem',
+    },
+
+    [mq('desktop')]: {
+      marginRight: '3rem',
+    },
 
     '> p': {
       width: '4rem',
@@ -129,6 +174,9 @@ function Content({ data, status }: AdminUsersResp) {
                 </li>
                 <li>
                   <p>{user.nation === 'KR' ? USER_NATIONALITY[0] : USER_NATIONALITY[1]}</p>
+                </li>
+                <li>
+                  <p> </p>
                 </li>
               </Item>
             </Link>
