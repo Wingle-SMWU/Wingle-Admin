@@ -38,6 +38,8 @@ function Home() {
     }
   });
 
+  const userCount = Number(data?.totalPages) - page + Number(data?.list?.length);
+
   const handleClickTabBar = useCallback((idx: number) => {
     setCurrIdx(idx);
     setPage(1);
@@ -53,7 +55,7 @@ function Home() {
     <Wrapper>
       <Tabbar currIdx={currIdx} handleClickTabBar={handleClickTabBar} />
       <>
-        <Content data={data?.list} status={status} />
+        <Content data={data?.list} count={userCount} status={status} />
         <PageBtn totalPages={data?.totalPages} page={page} setPage={setPage} />
       </>
     </Wrapper>

@@ -135,7 +135,7 @@ export const countryList: CountryListType[] = [
     enNation: 'Taiwan',
   },
   {
-    code: 'KR',
+    code: 'Republic of Korea',
     krNation: '대한민국',
     enNation: 'Republic of Korea',
   },

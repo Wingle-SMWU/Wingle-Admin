@@ -8,6 +8,7 @@ import { AdminUserResp } from 'types/userTypes';
 
 type AdminUsersResp = {
   data: AdminUserResp[];
+  count: number;
   status: string;
 };
 
@@ -46,7 +47,7 @@ const Menu = styled.ul(({ theme }) => ({
     color: theme.color.gray600,
   },
 
-  '> li:nth-of-type(1), li:nth-of-type(4)': {
+  '> li:nth-of-type(1)': {
     width: '6rem',
     [mq('tablet')]: {
       width: '10rem',
@@ -64,7 +65,7 @@ const Menu = styled.ul(({ theme }) => ({
       width: '19rem',
     },
     [mq('desktop')]: {
-      width: '21.4rem',
+      width: '20rem',
     },
     '> p': {
       width: '18.2rem',
@@ -77,6 +78,18 @@ const Menu = styled.ul(({ theme }) => ({
     },
     '> p': {
       width: '4.8rem',
+    },
+  },
+  '> li:nth-of-type(4)': {
+    width: '6rem',
+    [mq('tablet')]: {
+      width: '21rem',
+    },
+    [mq('desktop')]: {
+      width: '18.4rem',
+    },
+    '> p': {
+      width: '8rem',
     },
   },
 }));
@@ -112,6 +125,7 @@ const Item = styled.ul<{ nation: string | null }>(({ theme, nation }) => ({
     },
   },
   '> li:nth-of-type(2), li:nth-of-type(4)': {
+    width: '20rem',
     '> p': {
       width: '9rem',
       [mq('tablet')]: {
@@ -143,12 +157,23 @@ const Item = styled.ul<{ nation: string | null }>(({ theme, nation }) => ({
       fontWeight: theme.fontWeight.bold,
       fontSize: '1.2rem',
       lineHeight: '1.8rem',
-      color: nation === 'KR' ? theme.color.gray600 : theme.color.orange400,
+      color: nation === 'Republic of Korea' ? theme.color.gray600 : theme.color.orange400,
+    },
+  },
+  '> li:nth-of-type(5)': {
+    '> p': {
+      width: '3rem',
+      [mq('tablet')]: {
+        width: '7rem',
+      },
+      [mq('desktop')]: {
+        width: '8rem',
+      },
     },
   },
 }));
 
-function Content({ data, status }: AdminUsersResp) {
+function Content({ data, status, count }: AdminUsersResp) {
   return (
     <Wrapper>
       <Menu>
@@ -168,16 +193,23 @@ function Content({ data, status }: AdminUsersResp) {
             >
               <Item nation={user.nation}>
                 <li>
-                  <p>{data.length - idx}</p>
+                  <p>{count - idx}</p>
                 </li>
                 <li>
                   <p>{user.name}</p>
                 </li>
                 <li>
-                  <p>{user.nation === 'KR' ? USER_NATIONALITY[0] : USER_NATIONALITY[1]}</p>
+                  <p>
+                    {user.nation === 'Republic of Korea'
+                      ? USER_NATIONALITY[0]
+                      : USER_NATIONALITY[1]}
+                  </p>
                 </li>
                 <li>
                   <p>{formattedTime(user.createdTime)}</p>
+                </li>
+                <li>
+                  <p> </p>
                 </li>
               </Item>
             </Link>

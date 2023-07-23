@@ -50,14 +50,18 @@ function Profile({ data }: ProfileFactor) {
   const location = useLocation();
   const country = getKrNationByCode(data?.nation) || '';
   const time = formattedTime(data?.createdTime) || '';
+  const updateTime = formattedTime(data?.updateTime) || '';
+  const userStatus = data?.permission;
 
   return (
     <Wrapper>
       <ProfileInfo title="No" info={location.state.no} />
       <ProfileInfo title="가입신청일" info={time} />
+      {userStatus === 'APPROVE' && <ProfileInfo title="수락완료일" info={updateTime} />}
+      {userStatus === 'DENY' && <ProfileInfo title="수락거절일" info={updateTime} />}
       <ProfileInfo
         title="구분"
-        info={data.nation === 'KR' ? USER_NATIONALITY[0] : USER_NATIONALITY[1]}
+        info={data.nation === 'Republic of Korea' ? USER_NATIONALITY[0] : USER_NATIONALITY[1]}
       />
       <ProfileInfo title="이름" info={data.name} />
       <ProfileInfo title="국적" info={country} />
