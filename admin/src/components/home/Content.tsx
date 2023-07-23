@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { ADMIN_CONTENT_MENU, USER_NATIONALITY } from '@utils/constants';
+import { formattedTime } from '@utils/index';
 import { mq } from '@utils/mediaquery';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -176,7 +177,7 @@ function Content({ data, status }: AdminUsersResp) {
                   <p>{user.nation === 'KR' ? USER_NATIONALITY[0] : USER_NATIONALITY[1]}</p>
                 </li>
                 <li>
-                  <p> </p>
+                  <p>{formattedTime(user.createdTime)}</p>
                 </li>
               </Item>
             </Link>

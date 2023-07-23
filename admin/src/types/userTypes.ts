@@ -6,10 +6,16 @@ export interface ReturnResp<T> {
 
 export interface AdminUserResp {
   userId: number;
+  email: string;
+  gender: boolean;
   createdTime: string;
   name: string;
-  nation: string | null;
+  nickname: string;
+  nation: string;
   idCardImage?: string;
+  schoolName: string;
+  departmentName: string;
+  studentNumber: string;
   memo?: string | null;
   reason?: string | null;
 }

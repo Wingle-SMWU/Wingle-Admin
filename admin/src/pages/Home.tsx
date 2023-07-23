@@ -28,9 +28,15 @@ function Home() {
   const { isLoggedIn } = useUser();
   const navigate = useNavigate();
 
-  const { data } = useQuery([path, { path, page }], () =>
-    axiosInstance?.get(`${USER_LIST_API}/${path}/${page - 1}`),
-  );
+  const { data } = useQuery([path, { path, page }], async () => {
+    try {
+      const response = await axiosInstance.get(`${USER_LIST_API}/${path}/${page - 1}`);
+      return response.data.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  });
 
   const handleClickTabBar = useCallback((idx: number) => {
     setCurrIdx(idx);
@@ -47,8 +53,8 @@ function Home() {
     <Wrapper>
       <Tabbar currIdx={currIdx} handleClickTabBar={handleClickTabBar} />
       <>
-        <Content data={data?.data.data.list} status={status} />
-        <PageBtn totalPages={data?.data.data.totalPages} page={page} setPage={setPage} />
+        <Content data={data?.list} status={status} />
+        <PageBtn totalPages={data?.totalPages} page={page} setPage={setPage} />
       </>
     </Wrapper>
   );

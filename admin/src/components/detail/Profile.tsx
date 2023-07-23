@@ -4,6 +4,7 @@ import { mq } from '@utils/mediaquery';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { AdminUserResp } from 'types/userTypes';
+import { formattedTime, getKrNationByCode } from '@utils/index';
 import ProfileInfo from './ProfileInfo';
 
 type ProfileFactor = {
@@ -47,22 +48,25 @@ const Wrapper = styled.div(({ theme }) => ({
 
 function Profile({ data }: ProfileFactor) {
   const location = useLocation();
+  const country = getKrNationByCode(data?.nation) || '';
+  const time = formattedTime(data?.createdTime) || '';
 
   return (
     <Wrapper>
       <ProfileInfo title="No" info={location.state.no} />
-      <ProfileInfo title="가입신청일" info={data.createdTime.split('T')[0]} />
+      <ProfileInfo title="가입신청일" info={time} />
       <ProfileInfo
         title="구분"
         info={data.nation === 'KR' ? USER_NATIONALITY[0] : USER_NATIONALITY[1]}
       />
       <ProfileInfo title="이름" info={data.name} />
-      <ProfileInfo title="국적" info="" />
-      <ProfileInfo title="성별" info="" />
-      <ProfileInfo title="학교" info="" />
-      <ProfileInfo title="학번" info="" />
-      <ProfileInfo title="닉네임" info="" />
-      <ProfileInfo title="이메일" info="" />
+      <ProfileInfo title="국적" info={country} />
+      <ProfileInfo title="성별" info={data.gender ? '여자' : '남자'} />
+      <ProfileInfo title="학교" info={data.schoolName} />
+      <ProfileInfo title="학과" info={data.departmentName} />
+      <ProfileInfo title="학번" info={data.studentNumber} />
+      <ProfileInfo title="닉네임" info={data.nickname} />
+      <ProfileInfo title="이메일" info={data.email} />
     </Wrapper>
   );
 }
