@@ -18,6 +18,7 @@ export interface AdminUserResp {
   studentNumber: string;
   permission: string;
   updateTime: string;
+  updatedTime: string;
   memo?: string | null;
   reason?: string | null;
 }

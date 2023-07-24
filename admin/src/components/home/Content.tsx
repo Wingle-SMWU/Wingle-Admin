@@ -8,8 +8,9 @@ import { AdminUserResp } from 'types/userTypes';
 
 type AdminUsersResp = {
   data: AdminUserResp[];
-  count: number;
+  count: string | number;
   status: string;
+  currIdx?: number;
 };
 
 const Wrapper = styled.div(({ theme }) => ({
@@ -60,9 +61,9 @@ const Menu = styled.ul(({ theme }) => ({
     },
   },
   '> li:nth-of-type(2)': {
-    width: '12.2rem',
+    width: '10rem',
     [mq('tablet')]: {
-      width: '19rem',
+      width: '12rem',
     },
     [mq('desktop')]: {
       width: '20rem',
@@ -72,21 +73,36 @@ const Menu = styled.ul(({ theme }) => ({
     },
   },
   '> li:nth-of-type(3)': {
-    width: '8rem',
+    width: '10rem',
     [mq('tablet')]: {
-      width: '8.8rem',
+      width: '10rem',
     },
     '> p': {
       width: '4.8rem',
     },
   },
   '> li:nth-of-type(4)': {
-    width: '6rem',
+    width: '10rem',
     [mq('tablet')]: {
-      width: '21rem',
+      width: '18rem',
+      '> p': {
+        width: '18rem',
+      },
     },
     [mq('desktop')]: {
-      width: '18.4rem',
+      width: '20rem',
+      '> p': {
+        width: '20rem',
+      },
+    },
+  },
+  '> li:nth-of-type(5)': {
+    width: '10rem',
+    [mq('tablet')]: {
+      width: '14rem',
+    },
+    [mq('desktop')]: {
+      width: '20rem',
     },
     '> p': {
       width: '8rem',
@@ -124,8 +140,14 @@ const Item = styled.ul<{ nation: string | null }>(({ theme, nation }) => ({
       },
     },
   },
-  '> li:nth-of-type(2), li:nth-of-type(4)': {
-    width: '20rem',
+  '> li:nth-of-type(2)': {
+    width: '10rem',
+    [mq('tablet')]: {
+      width: '12rem',
+    },
+    [mq('desktop')]: {
+      width: '20rem',
+    },
     '> p': {
       width: '9rem',
       [mq('tablet')]: {
@@ -160,29 +182,56 @@ const Item = styled.ul<{ nation: string | null }>(({ theme, nation }) => ({
       color: nation === 'Republic of Korea' ? theme.color.gray600 : theme.color.orange400,
     },
   },
-  '> li:nth-of-type(5)': {
+  '> li:nth-of-type(4)': {
+    width: '12rem',
+    [mq('tablet')]: {
+      width: '20rem',
+    },
+    [mq('desktop')]: {
+      width: '20rem',
+    },
     '> p': {
-      width: '3rem',
+      width: '10rem',
       [mq('tablet')]: {
-        width: '7rem',
+        width: '16rem',
       },
       [mq('desktop')]: {
-        width: '8rem',
+        width: '18.2rem',
+      },
+    },
+  },
+  '> li:nth-of-type(5)': {
+    width: '10rem',
+    [mq('tablet')]: {
+      width: '16rem',
+    },
+
+    [mq('desktop')]: {
+      width: '20rem',
+    },
+    '> p': {
+      width: '10rem',
+      [mq('tablet')]: {
+        width: '12rem',
+      },
+      [mq('desktop')]: {
+        width: '14rem',
       },
     },
   },
 }));
 
-function Content({ data, status, count }: AdminUsersResp) {
+function Content({ data, status, count, currIdx }: AdminUsersResp) {
   return (
     <Wrapper>
       <Menu>
-        {ADMIN_CONTENT_MENU.map((menu: string) => (
-          <li key={menu}>
-            <p>{menu}</p>
+        {ADMIN_CONTENT_MENU.map((menu, idx) => (
+          <li key={menu[1]}>
+            <p>{idx === 3 ? menu[currIdx || 0] : menu}</p>
           </li>
         ))}
       </Menu>
+
       <div>
         {data?.map((user, idx) => {
           return (
@@ -193,7 +242,7 @@ function Content({ data, status, count }: AdminUsersResp) {
             >
               <Item nation={user.nation}>
                 <li>
-                  <p>{count - idx}</p>
+                  <p>{Number(count) - (idx + 1)}</p>
                 </li>
                 <li>
                   <p>{user.name}</p>
@@ -206,10 +255,10 @@ function Content({ data, status, count }: AdminUsersResp) {
                   </p>
                 </li>
                 <li>
-                  <p>{formattedTime(user.createdTime)}</p>
+                  <p>{formattedTime(user.updatedTime)}</p>
                 </li>
                 <li>
-                  <p> </p>
+                  <p>{user.schoolName}</p>
                 </li>
               </Item>
             </Link>
