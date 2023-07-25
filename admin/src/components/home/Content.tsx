@@ -8,8 +8,9 @@ import { AdminUserResp } from 'types/userTypes';
 
 type AdminUsersResp = {
   data: AdminUserResp[];
-  count: string | number;
+  count: number;
   status: string;
+  page: number;
   currIdx?: number;
 };
 
@@ -221,51 +222,53 @@ const Item = styled.ul<{ nation: string | null }>(({ theme, nation }) => ({
   },
 }));
 
-function Content({ data, status, count, currIdx }: AdminUsersResp) {
+function Content({ data, status, count, page, currIdx }: AdminUsersResp) {
   return (
-    <Wrapper>
-      <Menu>
-        {ADMIN_CONTENT_MENU.map((menu, idx) => (
-          <li key={menu[1]}>
-            <p>{idx === 3 ? menu[currIdx || 0] : menu}</p>
-          </li>
-        ))}
-      </Menu>
+    data && (
+      <Wrapper>
+        <Menu>
+          {ADMIN_CONTENT_MENU.map((menu, idx) => (
+            <li key={menu[1]}>
+              <p>{idx === 3 ? menu[currIdx || 0] : menu}</p>
+            </li>
+          ))}
+        </Menu>
 
-      <div>
-        {data?.map((user, idx) => {
-          return (
-            <Link
-              key={user.userId}
-              to={`/detail/${user.userId}`}
-              state={{ status, no: data.length - idx }}
-            >
-              <Item nation={user.nation}>
-                <li>
-                  <p>{Number(count) - (idx + 1)}</p>
-                </li>
-                <li>
-                  <p>{user.name}</p>
-                </li>
-                <li>
-                  <p>
-                    {user.nation === 'Republic of Korea'
-                      ? USER_NATIONALITY[0]
-                      : USER_NATIONALITY[1]}
-                  </p>
-                </li>
-                <li>
-                  <p>{formattedTime(user.updatedTime)}</p>
-                </li>
-                <li>
-                  <p>{user.schoolName}</p>
-                </li>
-              </Item>
-            </Link>
-          );
-        })}
-      </div>
-    </Wrapper>
+        <div>
+          {data?.map((user, idx) => {
+            return (
+              <Link
+                key={user.userId}
+                to={`/detail/${user.userId}`}
+                state={{ status, no: count - (10 * (page - 1) + idx) }}
+              >
+                <Item nation={user.nation}>
+                  <li>
+                    <p>{count - (10 * (page - 1) + idx)}</p>
+                  </li>
+                  <li>
+                    <p>{user.name}</p>
+                  </li>
+                  <li>
+                    <p>
+                      {user.nation === 'Republic of Korea'
+                        ? USER_NATIONALITY[0]
+                        : USER_NATIONALITY[1]}
+                    </p>
+                  </li>
+                  <li>
+                    <p>{formattedTime(user.updatedTime)}</p>
+                  </li>
+                  <li>
+                    <p>{user.schoolName}</p>
+                  </li>
+                </Item>
+              </Link>
+            );
+          })}
+        </div>
+      </Wrapper>
+    )
   );
 }
 
